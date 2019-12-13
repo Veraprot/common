@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Button, Form } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
-function HomeTermForm(props) {
+function HomeDetails(props) {
   const [state, setState] = useState({});
   const [userSelection, setUserSelection] = useState({});
 
@@ -80,57 +80,54 @@ function HomeTermForm(props) {
     });
   }
 
-  const handleSubmit = (e) => {
+  const saveAndContinue = (e) => {
     e.preventDefault()
-    props.sendApartmentDetails(userSelection)
+    props.handleSubmit(userSelection)
+    props.nextStep()
   }
 
   return (
-    <div className="application-form">
-      <div className="form-header">
-      </div>
-      <Form onSubmit={handleSubmit}>
-        <h2>Home</h2>
-        <Form.Select 
-          fluid  
-          placeholder='Select your home' 
-          options={homeList()} 
-          onChange={(e, value) => chooseHome(e, value, 'home')}
-        />
-        <h2>Room</h2>
-        <Form.Select 
-          fluid  
-          placeholder='Select your country' 
-          options={apartmentList()} 
-          onChange={(e, value) => chooseHome(e, value, 'apartment')}
-          disabled={userSelection.home == null}
-        />
-        <h2>how many people are applying to live here?</h2>
-        <Form.Select 
-          fluid  
-          placeholder='roommates' 
-          options={roommatesList()} 
-          onChange={(e, value) => chooseHome(e, value, 'roommates')}
-        />
-        <h2>Desired move-in date</h2>
-        <Form.Input
-          type="date" 
-          name="date" 
-          placeholder='mm/dd/yyyy'
-          onChange={(e, value) => chooseHome(e, value, 'move-in')}
-        >
-        </Form.Input>
+    <Form>
+      <h2>Home</h2>
+      <Form.Select 
+        fluid  
+        placeholder='Select your home' 
+        options={homeList()} 
+        onChange={(e, value) => chooseHome(e, value, 'home')}
+      />
+      <h2>Room</h2>
+      <Form.Select 
+        fluid  
+        placeholder='Select your country' 
+        options={apartmentList()} 
+        onChange={(e, value) => chooseHome(e, value, 'apartment')}
+        disabled={userSelection.home == null}
+      />
+      <h2>how many people are applying to live here?</h2>
+      <Form.Select 
+        fluid  
+        placeholder='roommates' 
+        options={roommatesList()} 
+        onChange={(e, value) => chooseHome(e, value, 'roommates')}
+      />
+      <h2>Desired move-in date</h2>
+      <Form.Input
+        type="date" 
+        name="date" 
+        placeholder='mm/dd/yyyy'
+        onChange={(e, value) => chooseHome(e, value, 'move-in')}
+      >
+      </Form.Input>
 
-        <Form.Select 
-          fluid  
-          placeholder='Term Length' 
-          options={termLength()} 
-          onChange={(e, value) => chooseHome(e, value, 'term-length')}
-        />
-        <Button type='submit'>Continue</Button>
-      </Form>
-    </div>
+      <Form.Select 
+        fluid  
+        placeholder='Term Length' 
+        options={termLength()} 
+        onChange={(e, value) => chooseHome(e, value, 'term-length')}
+      />
+      <Button onClick={(e) => saveAndContinue(e)}>Save And Continue </Button>
+    </Form>
   )
 }
 
-export default HomeTermForm;
+export default HomeDetails;
