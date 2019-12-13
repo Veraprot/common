@@ -3,7 +3,8 @@ import React from "react";
 function Confirmation(props) {
   return (
     <div>
-    hi
+      Confirmation info goes here, ran out of time
+    {/* get user selection from props and display here */}
   </div>
   )
 }

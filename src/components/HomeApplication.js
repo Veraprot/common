@@ -21,11 +21,10 @@ function HomeApplication(props) {
   }
 
   const handleSubmit = (selection) => {
-    console.log(selection)
-      // setState({ 
-      //   ...state,
-      //   selection 
-      // })
+      setState({ 
+        ...state,
+        selection 
+      })
   }
 
   const renderForms = () => {
